@@ -81,17 +81,10 @@ function App() {
     });
   }
   return (
-    <main
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      <div id="game-container">
-        <div id="game-board-and-players">
-          <ol id="players" className="highlight-player">
+    <main className="container">
+      <div className="flex justify-center items-center h-screen  ">
+        <div className="border-amber-500 border-3 shadow-2xl p-4  ">
+          <div className="flex justify-between items-center gap-5 p-5">
             <Player
               player_name={players["X"]}
               player_symbol="X"
@@ -104,34 +97,33 @@ function App() {
               isActive={activePlayer === "0"}
               onChangeName={handlePlayerNameChamge}
             />
-          </ol>
+          </div>
           {(winner || hasDraw) && (
             <GameOver winner={winner} handleRematch={handleRematch} />
           )}
           <Gameborad onSelectCell={handleSelectCell} board={gameboard} />
-
-          <Button
-            type="primary"
-            onClick={showDrawer}
-            style={{
-              position: "absolute",
-              top: "1rem",
-              right: "1rem",
-            }}
-            disabled={!log.length}
-          >
-            Show Logs
-          </Button>
-          <Drawer
-            title="Game Logs"
-            placement="right"
-            onClose={closeDrawer}
-            open={isDrawerOpen}
-          >
-            <Log turns={log} players={players} />
-          </Drawer>
         </div>
       </div>
+      <Button
+        type="primary"
+        onClick={showDrawer}
+        style={{
+          position: "absolute",
+          top: "1rem",
+          right: "1rem",
+        }}
+        disabled={!log.length}
+      >
+        Show Logs
+      </Button>
+      <Drawer
+        title="Game Logs"
+        placement="right"
+        onClose={closeDrawer}
+        open={isDrawerOpen}
+      >
+        <Log turns={log} players={players} />
+      </Drawer>
     </main>
   );
 }

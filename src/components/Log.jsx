@@ -1,14 +1,13 @@
-function Log({ turns, players }) {
+export default function Log({ turns, players }) {
   return (
-    <ol id="log">
+    <ol className="space-y-2">
       {turns.map((turn) => (
-        <li key={`${turn.Square.row}-${turn.Square.cell}`} className="log-item">
-          {players[turn.player]} selected Raw {turn.Square.row} - Cell{" "}
-          {turn.Square.cell}
+        <li key={`${turn.Square.row}-${turn.Square.cell}`}>
+          {`${players[turn.player]} selected Row ${turn.Square.row} - Cell ${
+            turn.Square.cell
+          }`}
         </li>
       ))}
     </ol>
   );
 }
-
-export default Log;

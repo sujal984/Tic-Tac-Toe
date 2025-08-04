@@ -1,16 +1,19 @@
-import React from "react";
+import { Button, Typography } from "antd";
 
-function GameOver({ winner, handleRematch }) {
+const { Title, Text } = Typography;
+
+export default function GameOver({ winner, handleRematch }) {
   return (
-    <div id="game-over">
-      <h2>Game Over !</h2>
-      {winner && <p>{winner} won!</p>}
-      {!winner && <p>It's a draw!</p>}
-      <p>
-        <button onClick={handleRematch}>Rematch</button>
-      </p>
+    <div className="mt-8 text-center">
+      <Title level={2} className="!text-yellow-300">
+        Game Over!
+      </Title>
+      <Text className="text-xl !text-white">
+        {winner ? `${winner} won!` : "It's a draw!"}
+      </Text>
+      <Button type="primary" onClick={handleRematch} className="m-4">
+        Rematch
+      </Button>
     </div>
   );
 }
-
-export default GameOver;
