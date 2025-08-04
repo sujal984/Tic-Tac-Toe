@@ -1,25 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
-}
-
-
-
-#root{
- width:60rem;
-}
-html {
-  font-family: 'Roboto Slab', sans-serif;
-  line-height: 1.5;
-
-  color: #ebe7ef;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -28,51 +10,24 @@ body {
       rgba(241, 210, 70, 0.98),
       rgba(250, 176, 103, 0.87)
     ),
-    url('bg-pattern-dark.png');
+    url("bg-pattern-dark.png");
   background-repeat: repeat;
   background-size: 100% 100%, 30% 30%, 100% 100%;
-  min-height: 100rem;
-  display: flex;
-  overflow: hidden;
+  margin: 0;
 }
-
-header {
-    height: 25rem;
-      margin-top: 10rem;
-      margin-left: 4rem;
-      width: 20rem;
-}
-
-header img {
-  width: 8rem;
-  object-fit: contain;
-  margin: 3rem auto 1rem 4rem;
-  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
-}
-
-h1 {
-  font-family: 'Caprasimo', cursive;
-  font-size: 3rem;
-  margin: 0 auto 3rem auto;
-  color: #3f3b00;
-}
-
-
-
 
 #game-container {
-  max-width: 45rem;
-  margin: .1rem auto;
-  padding: 2rem;
+  height: calc(100vh - 20px);
+  margin: 10px;
+  padding: 20px;
   border-radius: 6px;
   background: linear-gradient(#383624, #282617);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  position: relative;
 }
 
 #players {
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 1rem 0;
   display: flex;
   justify-content: center;
@@ -166,7 +121,7 @@ ol {
   background: none;
   color: #f8c031;
   border: none;
-  font-family: 'Caprasimo', cursive;
+  font-family: "Caprasimo", cursive;
   font-size: 4rem;
   text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
   animation: pulse-text-size 2s infinite ease-out;
@@ -199,7 +154,7 @@ ol {
   color: #3f3b00;
   font-size: 5rem;
   cursor: pointer;
-  font-family: 'Caprasimo', cursive;
+  font-family: "Caprasimo", cursive;
   padding: 1rem;
 }
 
@@ -218,7 +173,7 @@ ol {
 }
 
 #game-over h2 {
-  font-family: 'Caprasimo', cursive;
+  font-family: "Caprasimo", cursive;
   font-size: 4rem;
   text-align: center;
   color: #fcd256;
@@ -254,34 +209,24 @@ ol {
 
 #log {
   max-width: 20rem;
-  color: #3f3b00;
+
   list-style: none;
   margin: 2rem auto;
-  padding: 0;
+
   text-align: center;
-      padding-left: 1rem;
-    margin-left:.5rem;
+  padding-left: 1rem;
+  margin-left: 0.5rem;
 }
-
-
 #log li {
-  border-radius: 4px;
-  animation: slide-in-from-left 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
-  margin: 0.75rem;
+  margin-bottom: 0.5rem;
 }
-
-#log li.highlighted {
-  background-color: #3f3b00;
-  color: white;
-}
-
 #game-hints {
   text-align: center;
   color: #46432f;
 }
 
 #game-hints h2 {
-  font-family: 'Caprasimo', cursive;
+  font-family: "Caprasimo", cursive;
   font-size: 2rem;
   margin: 0;
 }
@@ -301,13 +246,12 @@ ol {
   margin-top: 1.5rem;
 }
 
-.updated-ui{
-      display: flex;
-        text-align: justify;
-        /* margin-left: 6rem; */
-        width: 70rem;
-      }
+.updated-ui {
+  display: flex;
+  text-align: justify;
 
+  width: 70rem;
+}
 
 @keyframes slide-in-from-left {
   0% {
@@ -359,7 +303,6 @@ ol {
   }
 }
 
-/* Fancy animation for showing the "Game Over" element */
 @keyframes pop-in {
   0% {
     transform: scale(0);
@@ -371,5 +314,61 @@ ol {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+.ant-btn {
+  background: #3f3b00;
+  color: #fcd256;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s, color 0.2s;
+}
+.ant-btn:hover {
+  background: #fcd256 !important;
+  color: #3f3b00;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(255, 187, 0, 0.8) !important;
+}
+.ant-drawer-content {
+  background-color: #3a370280 !important;
+  color: #fff !important;
+}
+.ant-drawer-body {
+  font-size: larger;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  #pre-game button {
+    font-size: 2.5rem;
+  }
+
+  #game-over h2 {
+    font-size: 2rem;
+  }
+
+  #game-over button {
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .player-name {
+    max-width: 10rem;
+    font-size: 1.2rem;
+  }
+
+  #game-board button {
+    width: 5rem;
+    height: 5rem;
+    font-size: 2.5rem;
+  }
+
+  .log-button {
+    position: static !important;
+    margin: 1rem auto !important;
+    display: block !important;
   }
 }

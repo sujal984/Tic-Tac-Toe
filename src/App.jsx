@@ -4,7 +4,8 @@ import Player from "./components/Player.jsx";
 import Gameborad from "./components/Gameboard.jsx";
 import Log from "./components/Log.jsx";
 import { winningCombination } from "./components/Winning-combination.js";
-
+import "./index.css";
+import { Drawer, Button } from "antd";
 const initialGameboard = [
   [null, null, null],
   [null, null, null],
@@ -20,18 +21,24 @@ function deriveActivePlayer(Log) {
 }
 
 function App() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  function showDrawer() {
+    setIsDrawerOpen(true);
+  }
+
+  function closeDrawer() {
+    setIsDrawerOpen(false);
+  }
+
   const [players, setPlayers] = useState({
     X: "Player 1",
     0: "Player 2",
   });
   const [log, setLog] = useState([]);
-  // const [isWinner, setIsWinner] = useState(false);
-  // const [activePlayer, setActivePlayer] = useState("X");
-
   const activePlayer = deriveActivePlayer(log);
   let gameboard = [...initialGameboard].map((array) => [...array]);
   for (const turn of log) {
-    // gameboard[turn.Square.row][turn.Square.cell]=turn.player
     const { Square, player } = turn || [];
     const { row, cell } = Square || [];
     gameboard[row][cell] = player || [];
@@ -47,14 +54,12 @@ function App() {
       firstSquare === secondSquare &&
       firstSquare === thirdSquare
     ) {
-      // setIsWinner(true);
       winner = players[firstSquare];
     }
   }
 
   const hasDraw = log.length === 9 && !winner;
   function handleSelectCell(rowIndex, cellIndex) {
-    // setActivePlayer(() => (activePlayer === "X" ? "0" : "X"));
     setLog((prevTurns) => {
       const currentplayer = deriveActivePlayer(prevTurns);
       const newTurns = [
@@ -65,7 +70,6 @@ function App() {
     });
   }
   function handleRematch() {
-    console.log("rematch");
     setLog([]);
   }
   function handlePlayerNameChamge(symbol, name) {
@@ -77,28 +81,57 @@ function App() {
     });
   }
   return (
-    <main className="updated-ui">
+    <main
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
       <div id="game-container">
-        <ol id="players" className="highlight-player">
-          <Player
-            player_name={players["X"]}
-            player_symbol="X"
-            isActive={activePlayer === "X"}
-            onChnageName={handlePlayerNameChamge}
-          />
-          <Player
-            player_name={players["X"]}
-            player_symbol="0"
-            isActive={activePlayer === "0"}
-            onChnageName={handlePlayerNameChamge}
-          />
-        </ol>
-        {(winner || hasDraw) && (
-          <GameOver winner={winner} handleRematch={handleRematch} />
-        )}
-        <Gameborad onSelectCell={handleSelectCell} board={gameboard} />
+        <div id="game-board-and-players">
+          <ol id="players" className="highlight-player">
+            <Player
+              player_name={players["X"]}
+              player_symbol="X"
+              isActive={activePlayer === "X"}
+              onChangeName={handlePlayerNameChamge}
+            />
+            <Player
+              player_name={players["0"]}
+              player_symbol="0"
+              isActive={activePlayer === "0"}
+              onChangeName={handlePlayerNameChamge}
+            />
+          </ol>
+          {(winner || hasDraw) && (
+            <GameOver winner={winner} handleRematch={handleRematch} />
+          )}
+          <Gameborad onSelectCell={handleSelectCell} board={gameboard} />
+
+          <Button
+            type="primary"
+            onClick={showDrawer}
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+            }}
+            disabled={!log.length}
+          >
+            Show Logs
+          </Button>
+          <Drawer
+            title="Game Logs"
+            placement="right"
+            onClose={closeDrawer}
+            open={isDrawerOpen}
+          >
+            <Log turns={log} players={players} />
+          </Drawer>
+        </div>
       </div>
-      <Log turns={log} players={players} />
     </main>
   );
 }
