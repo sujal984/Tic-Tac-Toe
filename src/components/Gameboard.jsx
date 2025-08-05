@@ -2,7 +2,7 @@ import { Button, Row, Col } from "antd";
 
 export default function Gameboard({ board, onSelectCell }) {
   return (
-    <div className="bg-amber-200 p-5 w-[350px] sm:w-auto">
+    <div className="bg-amber-200 p-5 w-full sm:w-auto">
       {board.map((row, rowIndex) => (
         <Row key={rowIndex} justify="center">
           {row.map((cell, cellIndex) => (
@@ -15,7 +15,7 @@ export default function Gameboard({ board, onSelectCell }) {
                 disabled={cell !== null}
                 className="
                 
-                !m-5 min-w-[50px] min-h-[50px] !text-4xl
+                m-5 min-w-[60px] min-h-[60px] !text-xl
                 sm:min-w-[100px] sm:min-h-[100px] sm:!text-7xl !bg-amber-100 hover:!bg-amber-300 "
               >
                 {cell}

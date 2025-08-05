@@ -64,27 +64,29 @@ function Player({ player_name, player_symbol, isActive, onChangeName }) {
 
   return (
     <Card
-      className={`w-full max-w-xs ${
-        isActive ? "border-4 border-amber-500" : "border border-gray-300"
+      bordered={false}
+      className={`sm:w-[35%] max-w-[70%] h-full max-h-full  !border-4 ${
+        isActive ? " border-amber-500 " : " border-gray-200"
       }`}
-      style={{ padding: "16px !important" }}
+      bodyStyle={{ padding: 16, height: "100%" }}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between gap-4">
+        <span className="flex justufy-between  items-center gap-2">
           {isEditing ? (
             <Input
               value={playerName}
               onChange={handleChange}
               className="w-32"
               size="small"
+              maxLength={10}
             />
           ) : (
             <Text className="text-white text-lg min-w-[30px]">
               {playerName}
             </Text>
           )}
-          <span className="text-2xl text-white">{player_symbol}</span>
-        </div>
+          <span className="text-2xl ">{player_symbol}</span>
+        </span>
         <Button type="primary" size="small" onClick={handleEdit}>
           {isEditing ? "Save" : "Edit"}
         </Button>

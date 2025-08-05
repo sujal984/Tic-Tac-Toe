@@ -81,10 +81,54 @@ function App() {
     });
   }
   return (
-    <main className="container">
-      <div className="flex justify-center items-center h-screen  ">
-        <div className="border-amber-500 border-3 shadow-2xl p-4  ">
-          <div className="flex justify-between items-center gap-5 p-5">
+    // <main className="relative ">
+    //   <div className="flex justify-center  self-center w-full items-center h-screen  ">
+    //     <div className="border-amber-500 border-3 shadow-2xl p-4  self-center  flex flex-col justify-center items-center max-w-[350px] sm:max-w-full">
+    //       <div className="flex justify-between items-center gap-5 my-5">
+    //         <Player
+    //           player_name={players["X"]}
+    //           player_symbol="X"
+    //           isActive={activePlayer === "X"}
+    //           onChangeName={handlePlayerNameChamge}
+    //         />
+    //         <Player
+    //           player_name={players["0"]}
+    //           player_symbol="0"
+    //           isActive={activePlayer === "0"}
+    //           onChangeName={handlePlayerNameChamge}
+    //         />
+    //       </div>
+    //       {(winner || hasDraw) && (
+    //         <GameOver winner={winner} handleRematch={handleRematch} />
+    //       )}
+    //       <Gameborad onSelectCell={handleSelectCell} board={gameboard} />
+    //     </div>
+    //   </div>
+    //   <Button
+    //     type="primary"
+    //     onClick={showDrawer}
+    //     style={{
+    //       position: "absolute",
+    //       top: "1rem",
+    //       right: "1rem",
+    //     }}
+    //     disabled={!log.length}
+    //   >
+    //     Show Logs
+    //   </Button>
+    //   <Drawer
+    //     title="Game Logs"
+    //     placement="right"
+    //     onClose={closeDrawer}
+    //     open={isDrawerOpen}
+    //   >
+    //     <Log turns={log} players={players} />
+    //   </Drawer>
+    // </main>
+    <main className="relative">
+      <div className="flex justify-center items-center h-screen w-full">
+        <div className="border-amber-500 border-4 shadow-2xl p-4 flex flex-col justify-center items-center w-full max-w-2xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-center  items-center gap-5 my-5 w-full">
             <Player
               player_name={players["X"]}
               player_symbol="X"
@@ -98,12 +142,14 @@ function App() {
               onChangeName={handlePlayerNameChamge}
             />
           </div>
+
           {(winner || hasDraw) && (
             <GameOver winner={winner} handleRematch={handleRematch} />
           )}
           <Gameborad onSelectCell={handleSelectCell} board={gameboard} />
         </div>
       </div>
+
       <Button
         type="primary"
         onClick={showDrawer}
@@ -116,6 +162,7 @@ function App() {
       >
         Show Logs
       </Button>
+
       <Drawer
         title="Game Logs"
         placement="right"
