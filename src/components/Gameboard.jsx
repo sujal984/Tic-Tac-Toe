@@ -15,7 +15,7 @@ export default function Gameboard({ board, onSelectCell }) {
                 disabled={cell !== null}
                 className="
                 
-                m-5 min-w-[60px] min-h-[60px] !text-xl
+                m-5 min-w-[50%] min-h-[50%] !text-xl
                 sm:min-w-[100px] sm:min-h-[100px] sm:!text-7xl !bg-amber-100 hover:!bg-amber-300 "
               >
                 {cell}
